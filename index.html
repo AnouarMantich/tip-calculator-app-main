@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  <title>Frontend Mentor | Tip calculator app</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@700&display=swap');
+    :root{
+      --Strong-cyan: hsl(172, 67%, 45%);
+      --Very-dark-cyan: hsl(183, 100%, 15%);
+      --Dark-grayish-cyan: hsl(186, 14%, 43%);
+      --Grayish-cyan: hsl(184, 14%, 56%);
+      --Light-grayish-cyan: hsl(185, 41%, 84%);
+      --Very-light-grayish-cyan: hsl(189, 41%, 97%);
+      --White: hsl(0, 0%, 100%);
+    }
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+
+    *{
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
+
+    ::placeholder{
+      font-size: 1.5rem;
+      color: var(--Grayish-cyan);
+      text-align: left;
+    }
+
+    main{
+      padding-top: 50px;
+      height: 100vh;
+      width: 100vw;
+      background: var(--Grayish-cyan);
+      font-family: 'Space Mono', monospace;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    .container{
+      height: 500px;
+      border-radius: 20px;
+      margin-top: 5%;
+      background: var(--White);
+      padding: 20px;
+      display: flex;
+    }
+    .left {
+      width: 50%;
+      padding: 20px;
+      color: var(--Very-dark-cyan);
+    }
+
+
+    .numberContainer{
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .numberContainer span{
+      color: red;
+      margin-right: 50px;
+    }
+    
+
+
+    .bill ,.number{
+      display: block;
+      width: 100%;
+      height: 50px;
+      text-align: end;
+      font-family: 'Space Mono', monospace;
+      color: var(--Very-dark-cyan);
+      font-size: 1.5em;
+      text-indent: 10px;
+      margin: 20px auto;
+      border-radius: 5px;
+      border: none;
+      outline: none;
+      background-color: var(--Very-light-grayish-cyan);
+    }
+    .bill:focus , .number:focus{
+      border: 3px solid var(--Strong-cyan);
+    }
+
+    .tipPercent{
+      margin: 20px auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 20px;
+    }
+    .tipPercent div{
+      height: 60px;
+      width: 150px;
+      padding-top: 5px;
+      color: var(--White);
+      font-size: 2em;
+      text-align: center;
+      background-color: var(--Very-dark-cyan);
+      border-radius: 5px;
+    }
+    .tipPercent div:nth-of-type(3){
+      background:var(--Strong-cyan) ;
+      color: black;
+    }
+    .tipPercent div:last-of-type{
+      overflow: hidden;
+      background:var(--Very-light-grayish-cyan) ;
+      color: var(--Very-dark-cyan);
+    }
+
+
+    .right{
+      padding: 50px;
+      width: 500px;
+      margin-left: 20px;
+      background: var(--Very-dark-cyan);
+      border-radius: 20px;
+    }
+
+    .tip-display ,.total{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-align: end;
+    }
+    .total{
+      margin-top: 50px;
+    }
+    .text h3{
+      color: var(--White);
+    }
+    .text p{
+      color: var(--Dark-grayish-cyan);
+    }
+    h1{
+      font-size: 3rem;
+      width:500px;
+
+      color: var(--Strong-cyan);
+      margin:auto 100px;
+    }
+    button{
+      width: 100%;
+      height: 50px;
+      border: none;
+      font-size: 1.3em;
+      font-family: 'Space Mono', monospace;
+      outline: none;
+      border-radius: 5px;
+      background: var(--Strong-cyan);
+      margin-top: 20%;
+    }
+    .bill , .tipPercent div:nth-of-type(n), button{
+      cursor: pointer;
+    }
+
+    button:hover{
+      background: var(--Light-grayish-cyan);
+      
+    }
+   @media screen and (max-width:900px) {
+    main{
+      height: fit-content;
+      justify-content: space-around;
+    }
+
+    .container{
+      flex-direction: column;
+      height: fit-content;
+      width: 100%;
+    }
+    .left {
+      width: 100%;
+      padding: 20px;
+      color: var(--Very-dark-cyan);
+    }
+
+    .tipPercent{
+      margin: 20px auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr;
+      gap: 10px;
+    }
+    .tipPercent div{
+      height: 60px;
+      padding-top: 5px;
+      color: var(--White);
+      font-size: 1.6em;
+      text-align: center;
+      background-color: var(--Very-dark-cyan);
+      border-radius: 5px;
+    }
+
+    .bill ,.number{
+
+      margin: 10px auto;
+    }
+
+
+
+    .right{
+      padding: 20px;
+      width: 100%;
+      margin-left: 0;
+      height: fit-content;
+      background: var(--Very-dark-cyan);
+      border-radius: 20px;
+    }
+
+    .tip-display ,.total{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .total{
+      margin-top: 20px;
+    }
+    .text h3{
+      color: var(--White);
+    }
+    .text p{
+      color: var(--Dark-grayish-cyan);
+    }
+    h1{
+      font-size: 2.5rem;
+      color: var(--Strong-cyan);
+      margin:unset;
+      margin-left: 30px;
+    }
+
+
+    button{
+      margin-top: 10%;
+    }
+
+
+    
+   }
+
+  </style>
+</head>
+<body>
+  <main>
+    <img src="./images/logo.svg" alt="">
+    <div class="container">
+      <div class="left">
+        <form >
+      <div class="numberContainer"><label for="Bill">Bill</label>  <span class="billMessage" hidden> please input a Number</span> </div>   
+         <input type="text" class="bill" pattern="[0-9]{0,}" value="0" required placeholder="$">
+         <label for="Bill">Select Tip %</label>
+         <div class="tipPercent">
+           <div class="5 tip" value="0.05">5%</div>
+           <div class="10 tip" value="0.1">10%</div>
+           <div class="15 tip" value="0.15">15%</div>
+           <div class="25 tip" value="0.2">25%</div>
+           <div class="50 tip" value="0.5">50%</div>
+           <div class="Custom tip" contentEditable="true">Custom</div>
+         </div>
+        <div class="numberContainer"> <label for="number">Number of People</label> <span class="peopleMessage" hidden> can not be 0</span></div>
+         <input type="text" class="number" value="0" pattern = "[1-9][0-9]{0,4}"  required placeholder="&#xf007;">
+        </form>
+      </div>
+      <div class="right">
+           <div class="tip-display">
+            <div class="text">
+              <h3>Tip Amount</h3>
+              <p>/ person</p>
+            </div>
+            <h1></h1>
+           </div>
+           <div class="total">
+            <div class="text">
+              <h3>Total</h3>
+              <p>/ person</p>
+            </div>
+            <h1></h1>
+           </div>
+           <button type="submit">RESET</button>
+      </div>
+      
+
+    </div>
+  </main>
+
+  <script src="./script.js"></script>
+</body>
+</html>
